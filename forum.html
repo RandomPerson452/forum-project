@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mini Forum</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    #posts { margin-top: 20px; }
+    .post { padding: 10px; border-bottom: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+  <h1>Forum</h1>
+  <input type="text" id="postInput" placeholder="Write something 😎">
+  <button onclick="addPost()">Post</button>
+  
+  <div id="posts"></div>
+
+  <script>
+    let posts = [];
+
+    function addPost() {
+      const input = document.getElementById("postInput");
+      if (input.value.trim() === "") return;
+
+      posts.push(input.value);
+      input.value = "";
+      renderPosts();
+    }
+
+    function renderPosts() {
+      const container = document.getElementById("posts");
+      container.innerHTML = "";
+      posts.forEach((post, i) => {
+        const div = document.createElement("div");
+        div.className = "post";
+        div.textContent = `#${i+1} - ${post}`;
+        container.appendChild(div);
+      });
+    }
+  </script>
+</body>
+</html>
